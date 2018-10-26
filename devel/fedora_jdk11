@@ -1,0 +1,19 @@
+FROM cipherboy_fedora:rawhide
+
+# Install generic development dependencies
+RUN true \
+        && dnf update -y --refresh \
+        && dnf install -y java-11-openjdk java-11-openjdk-devel \
+        && true
+
+RUN true \
+        && alternatives --set javac /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64/bin/javac \
+        && alternatives --set java /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64/bin/java \
+        && alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64 \
+        && alternatives --set jre_openjdk /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64 \
+        && export JAVA_HOME=/usr/bin/jvm/java-11 \
+        && true
+
+CMD true \
+        && bash -i \
+        && true

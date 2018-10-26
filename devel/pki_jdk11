@@ -1,0 +1,18 @@
+FROM cipherboy_fedora:jdk11
+
+# Install generic development dependencies
+RUN true \
+        && dnf update -y --refresh \
+        && true
+
+RUN true \
+        && cd /home \
+        && git clone https://github.com/cipherboy/pki \
+        && cd /home/pki \
+        && git remote add upstream https://github.com/dogtagpki/pki \
+        && dnf build-dep -y pki.spec \
+        && true
+
+CMD true \
+        && bash -i \
+        && true

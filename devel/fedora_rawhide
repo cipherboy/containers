@@ -1,0 +1,20 @@
+FROM fedora:rawhide
+
+# Install generic development dependencies
+RUN true \
+        && dnf update -y --refresh \
+        && dnf install -y dnf-plugins-core gcc make rpm-build ccache gdb git \
+                          nmap screen tmux vim-enhanced man \
+        && true
+
+RUN true \
+        && cd /root \
+        && git clone https://github.com/cipherboy/dotfiles \
+        && cd /root/dotfiles \
+        && ./install.sh bash vimrc git \
+        && touch /root/.no_powerline \
+        && true
+
+CMD true \
+        && bash -i \
+        && true
