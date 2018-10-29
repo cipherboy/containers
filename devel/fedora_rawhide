@@ -12,6 +12,8 @@ RUN true \
         && git clone https://github.com/cipherboy/dotfiles \
         && cd /root/dotfiles \
         && ./install.sh bash vimrc git \
+        && sed '/gpgsign/d' ~/.gitconfig -i \
+        && sed '/commit/d' ~/.gitconfig -i \
         && touch /root/.no_powerline \
         && true
 

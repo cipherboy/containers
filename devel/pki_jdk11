@@ -2,6 +2,7 @@ FROM cipherboy_fedora:jdk11
 
 # Install generic development dependencies
 RUN true \
+        && dnf copr enable -y cipherboy/jss \
         && dnf update -y --refresh \
         && true
 
@@ -11,6 +12,7 @@ RUN true \
         && cd /home/pki \
         && git remote add upstream https://github.com/dogtagpki/pki \
         && dnf build-dep -y pki.spec \
+        && git checkout jdk-11 \
         && true
 
 CMD true \
