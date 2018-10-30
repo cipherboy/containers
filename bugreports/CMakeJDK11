@@ -1,0 +1,17 @@
+FROM fedora:rawhide
+
+RUN true \
+    && dnf update --refresh -y \
+    && dnf install -y java-11-openjdk java-11-openjdk-devel cmake make gcc gcc-c++ \
+    && dnf info 'java-1.8.0-openjdk*' \
+    && dnf info cmake \
+    && echo "cmake_minimum_required(VERSION 2.6.0)" > /home/CMakeLists.txt \
+    && echo "" >> /home/CMakeLists.txt \
+    && echo "include(Java)" >> /home/CMakeLists.txt \
+    && echo "find_package(Java REQUIRED)" >> /home/CMakeLists.txt \
+    && cd /home \
+    && true
+
+CMD true \
+    && bash -i \
+    && true

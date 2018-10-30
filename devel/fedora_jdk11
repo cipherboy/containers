@@ -7,10 +7,10 @@ RUN true \
         && true
 
 RUN true \
-        && alternatives --set javac /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64/bin/javac \
-        ; alternatives --set java /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64/bin/java \
-        ; alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64 \
-        ; alternatives --set jre_openjdk /usr/lib/jvm/java-11-openjdk-11.0.1.13-1.fc30.x86_64 \
+        && alternatives --set javac /usr/lib/jvm/java-11-openjdk-11*.fc30.x86_64/bin/javac \
+        ; alternatives --set java /usr/lib/jvm/java-11-openjdk-11*.fc30.x86_64/bin/java \
+        ; alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11*.fc30.x86_64 \
+        ; alternatives --set jre_openjdk /usr/lib/jvm/java-11-openjdk-11*.fc30.x86_64 \
         ; export JAVA_HOME=/usr/bin/jvm/java-11 \
         && true
 
