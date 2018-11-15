@@ -1,10 +1,11 @@
-FROM fedora:28
+FROM ubuntu:bionic
 
 # Install generic development dependencies
 RUN true \
-        && dnf update -y --refresh \
-        && dnf install -y dnf-plugins-core gcc make rpm-build ccache gdb git \
-                          nmap screen tmux vim-enhanced man \
+        && apt-get update \
+        && apt-get dist-upgrade -y \
+        && apt-get install -y gcc make ccache gdb git nmap screen tmux \
+                              vim-enhanced man \
         && true
 
 RUN true \

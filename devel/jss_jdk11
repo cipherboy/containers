@@ -1,0 +1,19 @@
+FROM cipherboy_fedora:jdk11
+
+# Install generic development dependencies
+RUN true \
+        && dnf update -y --refresh \
+        && true
+
+RUN true \
+        && cd /home \
+        && git clone https://github.com/emaldona/jss \
+        && cd /home/jss \
+        && git remote add upstream https://github.com/dogtagpki/jss \
+        && dnf build-dep -y jss.spec \
+        && git checkout tag-not-supported-errors-fix \
+        && true
+
+CMD true \
+        && bash -i \
+        && true
