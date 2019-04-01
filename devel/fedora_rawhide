@@ -4,7 +4,7 @@ FROM fedora:rawhide
 RUN true \
         && dnf update -y --refresh \
         && dnf install -y dnf-plugins-core gcc make rpm-build ccache gdb git \
-                          nmap screen tmux vim-enhanced man \
+                          nmap screen tmux vim-enhanced man vim-jedi \
         && true
 
 RUN true \
