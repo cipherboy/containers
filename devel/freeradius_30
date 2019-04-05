@@ -1,0 +1,17 @@
+FROM cipherboy_fedora:30
+
+# Install generic development dependencies
+RUN true \
+        && dnf builddep -y 'freeradius*' \
+        && true
+
+RUN true \
+        && cd /home \
+        && git clone https://github.com/cipherboy/freeradius-server \
+        && cd /home/freeradius-server \
+        && git remote add upstream https://github.com/freeradius/freeradius-server \
+        && true
+
+CMD true \
+        && bash -i \
+        && true
