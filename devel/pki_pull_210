@@ -1,0 +1,29 @@
+FROM fedora:30
+
+# Install generic development dependencies
+RUN true \
+        && dnf update -y --refresh \
+        && dnf install sudo dnf-plugins-core rpm-build -y \
+        && dnf copr enable @pki/master -y \
+        && dnf builddep pki-ca -y \
+        && true
+
+# Build PKI
+RUN true \
+        && cd /root \
+        && git clone https://github.com/edewata/pki \
+        && cd /root/pki \
+        && git remote add upstream https://github.com/dogtagpki/pki \
+        && git config --global user.email "alexander.m.scheel@gmail.com" \
+        && git config --global user.name "Alexander Scheel" \
+        && git fetch --all \
+        && git checkout cli \
+        && git rebase upstream/master \
+        && ./build.sh rpm \
+        && dnf install /root/build/pki/RPMS/*.rpm -y \
+        && pki-server create tomcat@pki \
+        && true
+
+CMD true \
+        && bash -i \
+        && true
