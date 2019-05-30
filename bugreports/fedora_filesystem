@@ -1,0 +1,10 @@
+FROM fedora:rawhide
+
+# Update the container
+RUN true \
+        && dnf update -y --refresh \
+        && true
+
+CMD true \
+        && bash -i \
+        && true
