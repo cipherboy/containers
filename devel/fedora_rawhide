@@ -4,17 +4,13 @@ FROM fedora:rawhide
 RUN true \
         && dnf update -y --refresh \
         && dnf install -y dnf-plugins-core gcc make rpm-build ccache gdb git \
-                          nmap screen tmux vim-enhanced man vim-jedi \
+                          nmap screen tmux vim-enhanced man vim-jedi ccache \
+                          time curl wget \
         && true
 
 RUN true \
         && cd /root \
-        && git clone https://github.com/cipherboy/dotfiles \
-        && cd /root/dotfiles \
-        && ./install.sh bash vimrc git \
-        && ./agents/vim.sh \
-        && sed '/gpgsign/d' ~/.gitconfig -i \
-        && sed '/commit/d' ~/.gitconfig -i \
+        && curl -sSL https://df.cipherboy.com | bash \
         && touch /root/.no_powerline \
         && true
 
